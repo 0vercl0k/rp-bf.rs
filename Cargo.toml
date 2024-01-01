@@ -1,0 +1,26 @@
+[package]
+name = "rp-bf"
+version = "0.1.0"
+edition = "2021"
+authors = ["Axel '0vercl0k' Souchet"]
+about = "rp-bf: Find that one gadget, by Axel '0vercl0k' Souchet."
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+bitflags = "*"
+thiserror = "*"
+bochscpu = { path = "../bochscpu", features = ["serde"] }
+serde_json = "*"
+serde = "*"
+log = "*"
+anyhow = "*"
+conv = "*"
+udmp-parser-rs = "*"
+
+[dev-dependencies]
+env_logger = "0"
+clap = { version = "4", features = ["derive"] }
+superconsole = "0.2.0"
+
+[[example]]
+name = "p2o-miami22-finders"

@@ -1,0 +1,61 @@
+{
+  "dr0": 0,
+  "dr1": 0,
+  "dr2": 0,
+  "dr3": 0,
+  "dr6": 0,
+  "dr7": 0,
+  "es": {
+    "present": true,
+    "selector": 43,
+    "base": 0,
+    "limit": 4294967295,
+    "attr": 53235
+  },
+  "cs": {
+    "present": true,
+    "selector": 51,
+    "base": 0,
+    "limit": 0,
+    "attr": 8443
+  },
+  "ss": {
+    "present": true,
+    "selector": 43,
+    "base": 0,
+    "limit": 4294967295,
+    "attr": 53235
+  },
+  "ds": {
+    "present": true,
+    "selector": 43,
+    "base": 0,
+    "limit": 4294967295,
+    "attr": 53235
+  },
+  "fs": {
+    "present": true,
+    "selector": 83,
+    "base": 0,
+    "limit": 15360,
+    "attr": 16627
+  },
+  "gs": {
+    "present": true,
+    "selector": 43,
+    "base": 4083712,
+    "limit": 4294967295,
+    "attr": 53235
+  },
+  "sysenter_cs": 0,
+  "sysenter_esp": 0,
+  "sysenter_eip": 0,
+  "pat": 1971450118865158,
+  "efer": 3329,
+  "star": 9851692904349696,
+  "cr0": 2147811379,
+  "cr2": 769929216,
+  "cr4": 3475192,
+  "cr8": 0,
+  "xcr0": 231
+}
