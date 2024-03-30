@@ -1,21 +1,21 @@
 [package]
 name = "rp-bf"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Axel '0vercl0k' Souchet"]
 about = "rp-bf: Find that one gadget, by Axel '0vercl0k' Souchet."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-bitflags = "*"
-thiserror = "*"
+bitflags = "2.5.0"
+thiserror = "1.0"
 bochscpu = { path = "../bochscpu", features = ["serde"] }
-serde_json = "*"
-serde = "*"
-log = "*"
-anyhow = "*"
-conv = "*"
-udmp-parser-rs = "*"
+serde_json = "1.0"
+serde = "1.0"
+log = "0"
+anyhow = "1"
+conv = "0"
+udmp-parser = "0"
 
 [dev-dependencies]
 env_logger = "0"

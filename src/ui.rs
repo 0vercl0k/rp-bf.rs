@@ -1,9 +1,10 @@
 // Axel '0vercl0k' Souchet - June 22 2023
-use crate::emu::EmuStats;
-use crate::Candidate;
+use std::ops::Range;
 
 use anyhow::Result;
-use std::ops::Range;
+
+use crate::emu::EmuStats;
+use crate::Candidate;
 
 pub trait Ui {
     fn init(&mut self) -> Result<()> {

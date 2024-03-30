@@ -13,16 +13,16 @@ jobs:
         - {os: "windows-latest", url: "https://github.com/yrp604/bochscpu-build/releases/download/v0.3/bochscpu-build-windows-latest-x64.zip" }
   
     steps:
-      - name: Install latest rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+      - name: Set up rust
+        run: rustup default stable
 
       - name: Checkout rp-bf.rs
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: rp-bf.rs
 
       - name: Checkout bxcpu
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: yrp604/bochscpu
           path: bochscpu
@@ -41,7 +41,7 @@ jobs:
           cargo build --release --example p2o-miami22-finders
 
       - name: Upload debug artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: p2o-miami22-finders.dbg.${{ matrix.config.os }}
           path: |
@@ -49,7 +49,7 @@ jobs:
             rp-bf.rs/win10_ux64.json
 
       - name: Upload release artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: p2o-miami22-finders.${{ matrix.config.os }}
           path: |

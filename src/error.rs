@@ -1,8 +1,10 @@
 // Axel '0vercl0k' Souchet - May 30 2023
 //! This defines the [`Result<T>`] & the custom Error type [`RpBfError`] that
 //! are used throughout the codebase.
+use std::io;
+use std::num::ParseIntError;
+
 use bochscpu::mem::VirtMemError;
-use std::{io, num::ParseIntError};
 use thiserror::Error;
 
 /// The [`Result<T>`] type used throughout the codebase.

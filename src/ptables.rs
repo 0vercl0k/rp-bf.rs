@@ -2,13 +2,14 @@
 //! This module contains the logic to create the set of physical memory pages
 //! ([`PhyPage`]) required to build a virtual address space. It creates the
 //! minimun set of physical pages to create a specific virtual address space.
-use crate::gxa::{Gpa, Gva, Gxa};
-use crate::pxe::{Pxe, PxeFlags};
-
 use std::alloc::{alloc, dealloc, Layout};
-use std::collections::{hash_map, hash_map::Iter, HashMap};
+use std::collections::hash_map::Iter;
+use std::collections::{hash_map, HashMap};
 use std::default::Default;
 use std::mem::{align_of, size_of};
+
+use crate::gxa::{Gpa, Gva, Gxa};
+use crate::pxe::{Pxe, PxeFlags};
 
 /// A physical page is 4k bytes.
 pub const PHY_PAGE_SIZE: usize = 4 * 1_024;

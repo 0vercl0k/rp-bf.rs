@@ -13,8 +13,9 @@
 //! let page_aligned_gva = gva.page_align();
 //! let page_offset = gva.offset();
 //! ```
-use crate::ptables::PHY_PAGE_SIZE;
 use std::fmt::Display;
+
+use crate::ptables::PHY_PAGE_SIZE;
 
 /// A bunch of useful methods to manipulate 64-bit addresses of
 /// any kind.

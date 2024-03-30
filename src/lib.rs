@@ -137,21 +137,22 @@ pub mod pxe;
 pub mod ui;
 pub mod utils;
 
-use crate::emu::{Emu, TestcaseResult};
-use crate::error::{Result, RpBfError};
-use crate::gxa::Gva;
-use crate::ptables::{VirtAddrSpaceBuilder, PHY_PAGE_SIZE};
-use crate::utils::ToHuman;
+use std::fs;
+use std::ops::Range;
+use std::path::{Path, PathBuf};
 
 use bochscpu::cpu::{Seg, State};
 use emu::{RunStats, MARKER_PAGE_ADDR};
 use log::trace;
 use ptables::AddrSpace;
 use serde::{Deserialize, Serialize};
-use std::fs;
-use std::ops::Range;
-use std::path::{Path, PathBuf};
-use udmp_parser_rs::UserDumpParser;
+use udmp_parser::UserDumpParser;
+
+use crate::emu::{Emu, TestcaseResult};
+use crate::error::{Result, RpBfError};
+use crate::gxa::Gva;
+use crate::ptables::{VirtAddrSpaceBuilder, PHY_PAGE_SIZE};
+use crate::utils::ToHuman;
 
 /// Subset of [`State`] so that the JSON profile file doesn't need to specify
 /// every single field in a CPU context. The function [`UserState::to_bxcpu`]
@@ -186,7 +187,7 @@ struct UserState {
 impl UserState {
     /// Create a complete boschcpu [`State`] from a [`UserState`] which is a
     /// subset of it.
-    fn to_bxcpu(&self, ctx: &udmp_parser_rs::ThreadContextX64, teb: u64) -> State {
+    fn to_bxcpu(&self, ctx: &udmp_parser::ThreadContextX64, teb: u64) -> State {
         let mut state = State {
             rax: ctx.rax,
             rcx: ctx.rcx,
@@ -351,7 +352,7 @@ fn build_state(dump: &UserDumpParser, profile: &Path) -> Result<State> {
     let selected_thread = threads.get(&selected_thread_tid).unwrap();
 
     let x64_context = match selected_thread.context() {
-        udmp_parser_rs::ThreadContext::X64(ctx) => ctx,
+        udmp_parser::ThreadContext::X64(ctx) => ctx,
         _ => return Err(RpBfError::NotX64),
     };
 
@@ -442,7 +443,7 @@ pub fn explore(
     finder: &mut dyn Finder,
     ui: &mut dyn ui::Ui,
 ) -> Result<Vec<Candidate>> {
-    let dump = udmp_parser_rs::UserDumpParser::new(&opts.dump)?;
+    let dump = udmp_parser::UserDumpParser::new(&opts.dump)?;
     let state = build_state(&dump, &opts.profile)?;
     let addr_space = build_mem(&dump)?;
     let vspace_size = addr_space.bytes();

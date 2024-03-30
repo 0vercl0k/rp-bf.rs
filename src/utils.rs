@@ -1,9 +1,10 @@
 // Axel '0vercl0k' Souchet - June 4 2023
 //! This module contains various utilities used throughout the codebase.
-use crate::error::Result;
+use std::fmt::Display;
 
 use conv::ValueInto;
-use std::fmt::Display;
+
+use crate::error::Result;
 
 /// Type that implements [`Display`] to print out a size in human form.
 ///
