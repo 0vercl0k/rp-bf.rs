@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: yrp604/bochscpu
+          ref: cab805101cbcaf0c722ef266abdece8745676f44
           path: bochscpu
 
       - name: Download bxcpu-build artefacts
