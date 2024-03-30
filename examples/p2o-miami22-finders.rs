@@ -2,18 +2,18 @@
 extern crate rp_bf;
 
 mod ui {
-    use anyhow::{Context, Result};
-    use rp_bf::{
-        emu::EmuStats,
-        ui::Ui,
-        utils::{percentage, ToHuman},
-        Candidate,
-    };
+    use std::fs;
+    use std::ops::Range;
+    use std::path::Path;
     use std::time::Instant;
-    use std::{fs, ops::Range, path::Path};
-    use superconsole::{
-        style::Stylize, Component, Dimensions, DrawMode, Line, Lines, Span, SuperConsole,
-    };
+
+    use anyhow::{Context, Result};
+    use rp_bf::emu::EmuStats;
+    use rp_bf::ui::Ui;
+    use rp_bf::utils::{percentage, ToHuman};
+    use rp_bf::Candidate;
+    use superconsole::style::Stylize;
+    use superconsole::{Component, Dimensions, DrawMode, Line, Lines, Span, SuperConsole};
 
     use crate::CliOpts;
 
@@ -281,23 +281,18 @@ mod ui {
     }
 }
 
+use std::fs::{self, File};
+use std::io::Write;
+use std::ops::{Range, RangeInclusive};
+use std::path::PathBuf;
+
 use anyhow::{anyhow, Context, Result};
 use clap::Parser;
 use log::trace;
-use rp_bf::{
-    emu::Emu,
-    emu::MARKER_PAGE_ADDR,
-    gxa::{Gva, Gxa},
-    ui::Ui,
-    utils, Candidate, Finder, Opts,
-};
-use std::{
-    fs::{self, File},
-    io::Write,
-    ops::Range,
-    ops::RangeInclusive,
-    path::PathBuf,
-};
+use rp_bf::emu::{Emu, MARKER_PAGE_ADDR};
+use rp_bf::gxa::{Gva, Gxa};
+use rp_bf::ui::Ui;
+use rp_bf::{utils, Candidate, Finder, Opts};
 
 fn has_stack_pivoted_in_range(emu: &Emu, range: RangeInclusive<u64>) -> bool {
     let rsp = emu.rsp();

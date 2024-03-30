@@ -1,19 +1,21 @@
 // Axel '0vercl0k' Souchet - May 30 2023
 //! This module contains all the emulation logic.
-use crate::error::Result;
-use crate::gxa::{Gpa, Gva, Gxa};
-use crate::ptables::{AddrSpace, PHY_PAGE_SIZE};
+use core::panic;
+use std::alloc::{alloc, Layout};
+use std::collections::HashSet;
+use std::ptr::slice_from_raw_parts;
+use std::time::{Duration, Instant};
+use std::{cmp, mem};
 
 use bochscpu::cpu::{Cpu, RunState, State};
 use bochscpu::hook::{Hooks, MemAccess};
 use bochscpu::mem::{phy_write, virt_read_slice_checked, virt_translate_checked};
-use core::panic;
 use log::{debug, info, trace};
 use serde::{Deserialize, Serialize};
-use std::alloc::{alloc, Layout};
-use std::ptr::slice_from_raw_parts;
-use std::time::{Duration, Instant};
-use std::{cmp, collections::HashSet, mem};
+
+use crate::error::Result;
+use crate::gxa::{Gpa, Gva, Gxa};
+use crate::ptables::{AddrSpace, PHY_PAGE_SIZE};
 
 /// Statistics after emulating a slice of code.
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
