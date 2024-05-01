@@ -1,6 +1,6 @@
 [package]
 name = "rp-bf"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Axel '0vercl0k' Souchet"]
 about = "rp-bf: Find that one gadget, by Axel '0vercl0k' Souchet."
